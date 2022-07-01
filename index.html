@@ -6,9 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300,400&display=swap');
     body{
-      background:linear-gradient(gray,black 30%);
-      color: white;
+      background: linear-gradient(#cc0101,black 30%);
+color: white;
+font-family: 'Roboto', sans-serif;
     }
     img {
       margin: 0 auto;
@@ -58,11 +60,12 @@ for (let i = 0; i < arr.length; i++) {
 }
 
 function playPause() {
-  
-  if (myAudio.paused || songs[arr[z]]!=myAudio.src){
-    if(songs[arr[z]]!=myAudio.src){
+  if(songs[arr[z]]!=myAudio.src){
       myAudio.src=songs[arr[z]];
+      myAudio.play();
     }
+  else if (myAudio.paused){
+    
     myAudio.play();
     }
   else { 
