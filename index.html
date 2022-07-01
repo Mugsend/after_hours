@@ -4,8 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>After Hours - The weeknd</title>
   <style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300,400&display=swap');
     body{
       background: linear-gradient(#cc0101,black 30%);
@@ -13,7 +17,7 @@ color: white;
 font-family: 'Roboto', sans-serif;
     }
     img {
-      margin: 0 auto;
+      margin: 10px auto;
       display: block;
     }
     ul{
@@ -21,29 +25,61 @@ font-family: 'Roboto', sans-serif;
       padding: 0;
       list-style: none;
       overflow: auto;
+      font-size: 18px;
     }
     li{
       margin: 10px 0;
     }
-    div{
+    .title{
+      padding: 1px 15px;
+      position: relative;
+    }
+    .title *{
+      margin: 10px 0;
+    }
+    .player{
+      height: 50px;
+      position: fixed;
+      background-color:white ;
+      bottom: 0;
+      width: 100%;
+    }
+    .artist{
+      margin: 10px 0;
+font-size: 12px;
+color: #ffffffad;
+    }
+    #que{
       padding: 20px;
-      text-align: center;
+    }
+    .play-btn{
+      
+border-radius: 50%;
+background-color: #ae0f0f;
+border: 0;
+height: 50px;
+width: 50px;
+position: absolute;
+right: 30px;
+top: 50px;
     }
   </style>
 </head>
 <body>
-    
-<img src="cover.jpg" style="width: 60vw;">
+<img src="cover.jpg"style="width: 60vw;">
+<div class="title">
 <h2>After Hours</h2>
-<h4>TheWeeknd</h4>
-<div>
+<h5>The Weeknd</h5>
+<img class="play-btn" onclick="playPause()" src="play.png">
+</div>
+<ul id="que"></ul>
+<audio id="audio1"></audio>
+<div class="player">
 <button onclick="prev()">Prev</button>
 <button onclick="playPause()">Play</button>
 <button onclick="shuffle()">Shuffle</button>
 <button onclick="next()">Next</button>
 </div>
-<ul id="que"></ul>
-<audio id="audio1"></audio>
 <script> 
 const songs=["01_Alone_Again.mp3","02_Too_Late.mp3","03_Hardest_To_Love.mp3","04_Scared_To_Live.mp3","05_Snowchild.mp3","06_Escape_From_LA.mp3","07_Heartless.mp3","08_Faith.mp3","09_Blinding_Lights.mp3","10_In_Your_Eyes.mp3","11_Save_Your_Tears.mp3","12_Repeat_ After_Me_(Interlude).mp3","13_After_Hours.mp3","14_Until_I_Bleed_Out.mp3"];
 const songs_name=["Alone Again","Too Late","Hardest To Love","Scared To Live","Snowchild","Escape From LA","Heartless","Faith","Blinding Lights","In Your Eyes","Save Your Tears","Repeat After Me","After Hours","Until I Bleed Out"];
@@ -56,7 +92,7 @@ arr.push(i);
 }
 
 for (let i = 0; i < arr.length; i++) {
-  document.getElementById("que").innerHTML+="<li><p onclick=\"play(this.id)\""+"id=\""+i+"\">"+songs_name[arr[i]]+"</p></li>";
+  document.getElementById("que").innerHTML+="<li><p onclick=\"play(this.id)\""+"id=\""+i+"\">"+songs_name[arr[i]]+"</p><p  class='artist'>The Weeknd</p></li>";
 }
 
 function playPause() {
