@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body{
+      background:linear-gradient(gray,black 30%);
+      color: white;
+    }
+    img {
+      margin: 0 auto;
+      display: block;
+    }
+    ul{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      overflow: auto;
+    }
+    li{
+      margin: 10px 0;
+    }
+    div{
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+    
+<img src="index_files/cover.jpg" style="width: 60vw;">
+<h2>After Hours</h2>
+<h4>TheWeeknd</h4>
+<div>
+<button onclick="prev()">Prev</button>
+<button onclick="playPause()">Play</button>
+<button onclick="shuffle()">Shuffle</button>
+<button onclick="next()">Next</button>
+</div>
+<ul id="que"></ul>
+<audio id="audio1"></audio>
+<script> 
+const songs=["01_Alone_Again.mp3","02_Too_Late.mp3","03_Hardest_To_Love.mp3","04_Scared_To_Live.mp3","05_Snowchild.mp3","06_Escape_From_LA.mp3","07_Heartless.mp3","08_Faith.mp3","09_Blinding_Lights.mp3","10_In_Your_Eyes.mp3","11_Save_Your_Tears.mp3","12_Repeat_ After_Me_(Interlude).mp3","13_After_Hours.mp3","14_Until_I_Bleed_Out.mp3"];
+const songs_name=["Alone Again","Too Late","Hardest To Love","Scared To Live","Snowchild","Escape From LA","Heartless","Faith","Blinding Lights","In Your Eyes","Save Your Tears","Repeat After Me","After Hours","Until I Bleed Out"];
+const arr=[];
+var myAudio = document.getElementById("audio1");
+var y=z=0;
+
+for (let i=0;i<songs.length;i++){
+arr.push(i);
+}
+
+for (let i = 0; i < arr.length; i++) {
+  document.getElementById("que").innerHTML+="<li><p onclick=\"play(this.id)\""+"id=\""+i+"\">"+songs_name[arr[i]]+"</p></li>";
+}
+
+function playPause() {
+  
+  if (myAudio.paused || songs[arr[z]]!=myAudio.src){
+    if(songs[arr[z]]!=myAudio.src){
+      myAudio.src=songs[arr[z]];
+    }
+    myAudio.play();
+    }
+  else { 
+    myAudio.pause();
+    }
+  for (var i = arr.length - 1; i >= 0; i--) {
+    document.getElementById(i).style.color = "white";
+  }
+  document.getElementById(z).style.color = "red";
+}
+function prev(){
+if (z>0){
+z--;
+playPause();
+}
+}
+function next(){
+if (z<arr.length-1){
+z++;
+playPause();
+}
+}
+function shuffle(){
+z=0;
+for (let i = 0; i < 14; i++){
+arr.pop();
+}
+y=Math.floor(Math.random()*songs.length);
+arr.push(y);
+console.log(arr);
+while(arr.length!=songs.length) {
+  y=Math.floor(Math.random()*songs.length);
+for (let i = 0; i < arr.length; i++){
+if (y==arr[i]){
+break;
+}
+if (i==arr.length-1){
+arr.push(y);
+}
+}
+}
+playPause();
+list();
+}
+function list(){
+z=0
+document.getElementById("que").innerHTML="";
+for (let i = 0; i < arr.length; i++) {
+  document.getElementById("que").innerHTML+="<li><p onclick=\"play(this.id)\""+"id=\""+i+"\">"+songs_name[arr[i]]+"</p></li>";
+}
+playPause();
+}
+function play(id){
+  z=id;
+  playPause();
+}
+</script>
+
+
+</body></html>
