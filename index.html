@@ -152,7 +152,7 @@ function list(){
 z=0
 document.getElementById("que").innerHTML="";
 for (let i = 0; i < arr.length; i++) {
-  document.getElementById("que").innerHTML+="<li><p onclick=\"play(this.id)\""+"id=\""+i+"\">"+songs_name[arr[i]]+"</p></li>";
+  document.getElementById("que").innerHTML+="<li><p onclick=\"play(this.id)\""+"id=\""+i+"\">"+songs_name[arr[i]]+"</p><p  class='artist'>The Weeknd</p></li>";
 }
 playPause();
 }
