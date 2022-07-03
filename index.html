@@ -1,166 +1,241 @@
 <!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>After Hours - The weeknd</title>
+  <title>After Hours - The Weeknd</title>
   <style>
-  *{
-    margin: 0;
-    padding: 0;
-  }
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300,400&display=swap');
-    body{
-      background: linear-gradient(#cc0101,black 30%);
-color: white;
-font-family: 'Roboto', sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
     }
-    img {
-      max-width:300px;
+
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300,400&display=swap');
+
+    body {
+      background: linear-gradient(#cc0101, black 30%);
+      color: white;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .album-img {
+      max-width: 300px;
       margin: 10px auto;
       display: block;
     }
-    ul{
+    #player-img{
+      width: 50px;
+      height:50px;
+    }
+    ul {
       margin: 0;
       padding: 0;
       list-style: none;
       overflow: auto;
       font-size: 18px;
-      margin-bottom:50px;
+      margin-bottom: 50px;
     }
-    li{
+
+    li {
       margin: 10px 0;
     }
-    .title{
+
+    .song {
+      cursor: pointer;
+    }
+
+    .title {
       padding: 1px 15px;
       position: relative;
     }
-    .title *{
+
+    .title * {
       margin: 10px 0;
     }
-    .player{
-      height: 50px;
-      position: fixed;
-      background-color:white ;
-      bottom: 0;
-      width: 100%;
+
+    #player {
+      display: none;
+    border-radius: 5px;
+    position: fixed;
+    background-color: black;
+    bottom: 0px;
+    margin: 0 auto;
+    justify-content: space-between;
+    width: 100%;
+}
+#song-name{
+  line-height: 50px;
+    font-size: 30px;
+}
+    .controls{
+      display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
     }
-    .artist{
+    .controls img{
+      width: 40px;
+    }
+    .artist {
       margin: 10px 0;
-font-size: 12px;
-color: #ffffffad;
+      font-size: 12px;
+      color: #ffffffad;
     }
-    #que{
+
+    #que {
       padding: 20px;
     }
-    .play-btn{
-      
-border-radius: 50%;
-background-color: #ae0f0f;
-border: 0;
-height: 50px;
-width: 50px;
-position: absolute;
-right: 30px;
-top: 50px;
+
+    #play-btn {
+
+      border-radius: 50%;
+      color: #ae0f0f;
+      border: 0;
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      right: 30px;
+      top: 50px;
     }
   </style>
 </head>
+
 <body>
-<img src="cover.jpg"style="width: 60vw;">
-<div class="title">
-<h2>After Hours</h2>
-<h5>The Weeknd</h5>
-<img class="play-btn" onclick="playPause()" src="play.png">
-</div>
-<ul id="que"></ul>
-<audio id="audio1"></audio>
-<div class="player">
-<button onclick="prev()">Prev</button>
-<button onclick="playPause()">Play</button>
-<button onclick="shuffle()">Shuffle</button>
-<button onclick="next()">Next</button>
-</div>
-<script> 
-const songs=["01_Alone_Again.mp3","02_Too_Late.mp3","03_Hardest_To_Love.mp3","04_Scared_To_Live.mp3","05_Snowchild.mp3","06_Escape_From_LA.mp3","07_Heartless.mp3","08_Faith.mp3","09_Blinding_Lights.mp3","10_In_Your_Eyes.mp3","11_Save_Your_Tears.mp3","12_Repeat_ After_Me_(Interlude).mp3","13_After_Hours.mp3","14_Until_I_Bleed_Out.mp3"];
-const songs_name=["Alone Again","Too Late","Hardest To Love","Scared To Live","Snowchild","Escape From LA","Heartless","Faith","Blinding Lights","In Your Eyes","Save Your Tears","Repeat After Me","After Hours","Until I Bleed Out"];
-const arr=[];
-var myAudio = document.getElementById("audio1");
-var y=z=0;
-
-for (let i=0;i<songs.length;i++){
-arr.push(i);
-}
-
-for (let i = 0; i < arr.length; i++) {
-  document.getElementById("que").innerHTML+="<li><p onclick=\"play(this.id)\""+"id=\""+i+"\">"+songs_name[arr[i]]+"</p><p  class='artist'>The Weeknd</p></li>";
-}
-
-function playPause() {
-  if(songs[arr[z]]!=myAudio.src){
-      myAudio.src=songs[arr[z]];
-      myAudio.play();
-    }
-  else if (myAudio.paused){
+  <img class="album-img" src="cover.jpg" style="width: 60vw;">
+  <div class="title">
+    <h2>After Hours</h2>
+    <h5>The Weeknd</h5>
+    <img id="play-btn" onclick="playPause1()" src="play.svg">
+  </div>
+  <ul id="que"></ul>
+  <audio id="audio1"></audio>
+  <div id="player">
     
-    myAudio.play();
+    <img src="cover.jpg" id="player-img" alt="">
+    <p id="song-name"></p>
+    <div class="controls">
+      
+      <img onclick="prev()" src="previous.svg">
+    <img onclick="playPause()" id="play-btn1" src="play1.svg">
+    <img onclick="next()" src="next.svg">
+      <img onclick="shuffle()" src="shuffle.svg">
+
+    </div>
+    
+  
+</div>
+  <script>
+    const songs = ["01_Alone_Again.mp3", "02_Too_Late.mp3", "03_Hardest_To_Love.mp3", "04_Scared_To_Live.mp3", "05_Snowchild.mp3", "06_Escape_From_LA.mp3", "07_Heartless.mp3", "08_Faith.mp3", "09_Blinding_Lights.mp3", "10_In_Your_Eyes.mp3", "11_Save_Your_Tears.mp3", "12_Repeat_ After_Me_(Interlude).mp3", "13_After_Hours.mp3", "14_Until_I_Bleed_Out.mp3"];
+    const songs_name = ["Alone Again", "Too Late", "Hardest To Love", "Scared To Live", "Snowchild", "Escape From LA", "Heartless", "Faith", "Blinding Lights", "In Your Eyes", "Save Your Tears", "Repeat After Me", "After Hours", "Until I Bleed Out"];
+    const arr = [];
+    var myAudio = document.getElementById("audio1");
+    var y = z = 0;
+    for (let i = 0; i < songs.length; i++) {
+      arr.push(i);
     }
-  else { 
-    myAudio.pause();
+    myAudio.src=songs[arr[z]];
+    for (let i = 0; i < arr.length; i++) {
+      document.getElementById("que").innerHTML += "<li><p class='song' onclick='play(this.id)'" + "id='" + i + "'>" + songs_name[arr[i]] + "</p><p  class='artist'>The Weeknd</p></li>";
     }
-  for (var i = arr.length - 1; i >= 0; i--) {
-    document.getElementById(i).style.color = "white";
-  }
-  document.getElementById(z).style.color = "red";
-}
-function prev(){
-if (z>0){
-z--;
-playPause();
-}
-}
-function next(){
-if (z<arr.length-1){
-z++;
-playPause();
-}
-}
-function shuffle(){
-z=0;
-for (let i = 0; i < 14; i++){
-arr.pop();
-}
-y=Math.floor(Math.random()*songs.length);
-arr.push(y);
-console.log(arr);
-while(arr.length!=songs.length) {
-  y=Math.floor(Math.random()*songs.length);
-for (let i = 0; i < arr.length; i++){
-if (y==arr[i]){
-break;
-}
-if (i==arr.length-1){
-arr.push(y);
-}
-}
-}
-playPause();
-list();
-}
-function list(){
-z=0
-document.getElementById("que").innerHTML="";
-for (let i = 0; i < arr.length; i++) {
-  document.getElementById("que").innerHTML+="<li><p onclick=\"play(this.id)\""+"id=\""+i+"\">"+songs_name[arr[i]]+"</p><p  class='artist'>The Weeknd</p></li>";
-}
-playPause();
-}
-function play(id){
-  z=id;
-  playPause();
-}
-</script>
+    if (myAudio.paused){
+      document.getElementById("play-btn1").src = "play1.svg";
+    }
+    else{
+      document.getElementById("play-btn1").src = "pause1.svg";
+    }
+    function playPause1(){
+      document.getElementById("song-name").innerHTML=songs_name[arr[z]];
+      document.getElementById("player").style.display = "flex";
+      if(myAudio.paused){
+        myAudio.src = songs[arr[z]];
+        myAudio.play();
+        document.getElementById("play-btn").src = "pause.svg";
+        document.getElementById("play-btn1").src = "pause1.svg";
+      }
+      else{
+        myAudio.pause();
+        document.getElementById("play-btn").src = "play.svg";
+        document.getElementById("play-btn1").src = "play1.svg";
+      }
+      document.getElementById(z).style.color = "red";
+    }
+    function playPause(){
+      if(myAudio.paused){
+        myAudio.play();
+        document.getElementById("play-btn").src = "pause.svg";
+        document.getElementById("play-btn1").src = "pause1.svg";
+      }
+      else{
+        myAudio.pause();
+        document.getElementById("play-btn").src = "play.svg";
+        document.getElementById("play-btn1").src = "play1.svg";
+      }
+      
+    }
+    function change() {
+      myAudio.src = songs[arr[z]];
+      document.getElementById("song-name").innerHTML=songs_name[arr[z]];
+      myAudio.play();
+      document.getElementById("play-btn").src = "pause.svg";
+      document.getElementById("play-btn1").src = "pause1.svg";
+      
+      for (var i=0;i<arr.length;i++) {
+        console.log(i);
+        document.getElementById(i).style.color = "white";
+      }
+      document.getElementById(z).style.color = "red";
+      
+    }
+    function prev() {
+      if (z > 0) {
+        z--;
+        change();
+      }
+    }
+    function next() {
+      if (z < arr.length - 1) {
+        z++;
+        change();
+      }
+    }
+    function shuffle() {
+      z = 0;
+      for (let i = 0; i < 14; i++) {
+        arr.pop();
+      }
+      y = Math.floor(Math.random() * songs.length);
+      arr.push(y);
+      while (arr.length != songs.length) {
+        y = Math.floor(Math.random() * songs.length);
+        for (let i = 0; i < arr.length; i++) {
+          if (y == arr[i]) {
+            break;
+          }
+          if (i == arr.length - 1) {
+            arr.push(y);
+          }
+        }
+      }
+      list();
+      change();
+      
+    }
+    function list() {
+      document.getElementById("que").innerHTML = "";
+      for (let i = 0; i < arr.length; i++) {
+        document.getElementById("que").innerHTML += "<li><p onclick=\"play(this.id)\"" + "id=\"" + i + "\">" + songs_name[arr[i]] + "</p><p  class='artist'>The Weeknd</p></li>";
+      }
+    }
+    function play(id) {
+      z = id;
+      change();
+    }
+  </script>
 
 
-</body></html>
+</body>
+
+</html>
